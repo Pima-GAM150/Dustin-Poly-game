@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Filler : MonoBehaviour
+public class Filler : MonoBehaviour , IFadeComplete
 {
     public Image LoadingBar;
     public float Seconds;
@@ -46,7 +46,7 @@ public class Filler : MonoBehaviour
 
     }
 
-    void OnFadeComplete()
+    void IFadeComplete.OnFadeComplete()
     {
         if (nscene > 2)
         {
