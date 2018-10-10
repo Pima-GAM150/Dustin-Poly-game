@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, IBlock, IAttack
+public class Player : MonoBehaviour, IDamageable, IAttack, IBlock
 {
 
+	
 }
