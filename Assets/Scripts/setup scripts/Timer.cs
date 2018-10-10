@@ -19,14 +19,14 @@ public class Corutine : MonoBehaviour
     private int seconds;
 
     private void Start()
-    { 
+    {
 
         StartCoroutine(Loading(seconds));
     }
 
     IEnumerator Loading(int seconds)
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(seconds);
         }
