@@ -1,11 +1,28 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Starter : MonoBehaviour {
+public class Starter : MonoBehaviour, IFadeComplete {
 
-	public void StartGame ()
+    public int seconds;
+    
+    IEnumerator Loading(int seconds)
     {
-        SceneManager.LoadScene("Level 1");
+        while (true)
+        {
+            yield return new WaitForSeconds(seconds);
+            
+        }
     }
+
+    public void StartGame ()
+    {
+        StartCoroutine(Loading(seconds));
+        
+    }
+    void IFadeComplete.OnFadeComplete()
+    {
+        SceneManager.LoadScene("Loading Scene");
+    }
+    
 }

@@ -1,16 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class ManagerS : MonoBehaviour {
+public class ManagerS : MonoBehaviour
+{
+    public static ManagerS Manager { get; private set; }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void Awake()
+    {
+        if(Manager == null)
+        {
+            Manager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
