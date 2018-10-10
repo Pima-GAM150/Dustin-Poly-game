@@ -8,6 +8,7 @@ public class Filler : MonoBehaviour
 {
     public Image LoadingBar;
     public float Seconds;
+    public Animator AnimationControler;
 
     private int nscene;
     private bool ending;
@@ -19,6 +20,7 @@ public class Filler : MonoBehaviour
         ending = false;
 
         StartCoroutine(Loading(Seconds));
+        StartCoroutine(NextScene(Seconds));
     }
 
     IEnumerator Loading(float seconds)
@@ -32,8 +34,21 @@ public class Filler : MonoBehaviour
 
             i++;
         }
+    }
+    IEnumerator NextScene(float seconds)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(seconds*11);
 
-        if (ending)
+            AnimationControler.SetTrigger("FadeOut");
+        }
+
+    }
+
+    void OnFadeComplete()
+    {
+        if (nscene > 2)
         {
             SceneManager.LoadScene(5);
         }
@@ -41,10 +56,6 @@ public class Filler : MonoBehaviour
         {
             SceneManager.LoadScene(nscene);
             nscene++;
-            if (nscene >= 2)
-            {
-                ending = true;
-            }
         }
     }
 }
