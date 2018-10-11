@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBlock
-{
+public class IBlock : MonoBehaviour {
 
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 }
