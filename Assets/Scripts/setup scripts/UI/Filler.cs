@@ -12,12 +12,14 @@ public class Filler : MonoBehaviour , IFadeComplete
 
     private int nscene;
     private bool ending;
+    private bool load;
 
     private void Start()
     {
         LoadingBar.fillAmount = 0.0f;
         nscene = 0;
         ending = false;
+
 
         StartCoroutine(Loading(Seconds));
         StartCoroutine(NextScene(Seconds));
@@ -48,14 +50,25 @@ public class Filler : MonoBehaviour , IFadeComplete
 
     void IFadeComplete.OnFadeComplete()
     {
-        if (nscene > 2)
+        if (nscene > 2 && ending)
         {
             SceneManager.LoadScene(5);
+        }
+        else if(nscene <= 2 && load)
+        {
+            SceneManager.LoadScene(4);
+            load = false;
         }
         else
         {
             SceneManager.LoadScene(nscene);
             nscene++;
+            load = true;
+            if(nscene>2)
+            {
+                ending = true;
+                
+            }
         }
     }
 }
