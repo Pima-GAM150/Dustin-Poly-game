@@ -252,6 +252,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 423892701}
   m_CullTransparentMesh: 0
+--- !u!114 &1163201985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114617591221418236, guid: 6c095507d9dca8c4680b927554115335,
+    type: 2}
+  m_PrefabInternal: {fileID: 1909859811}
+  m_Script: {fileID: 11500000, guid: 47c488245bc551b4f8fe116ed5a9b72f, type: 3}
 --- !u!1 &1259065735
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,9 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384791768}
   - component: {fileID: 1384791769}
-  - component: {fileID: 1384791772}
   - component: {fileID: 1384791771}
-  - component: {fileID: 1384791770}
   m_Layer: 5
   m_Name: LoadingBar Filler
   m_TagString: Untagged
@@ -441,34 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingBar: {fileID: 423892703}
   Seconds: 1
-  AnimationControler: {fileID: 1384791772}
---- !u!114 &1384791770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1384791767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  PanalToFade: {fileID: 1163201985}
 --- !u!222 &1384791771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -476,24 +453,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1384791767}
   m_CullTransparentMesh: 0
---- !u!95 &1384791772
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1384791767}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7530a50afa863df469ddf29d48e33688, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1780964790
 GameObject:
   m_ObjectHideFlags: 0

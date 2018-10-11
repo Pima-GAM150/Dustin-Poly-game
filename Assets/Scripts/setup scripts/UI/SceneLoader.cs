@@ -1,89 +1,67 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour, IFadeComplete
+public class SceneLoader : MonoBehaviour
 {
-    public Animator AnimationControler;
-    public int Seconds;
+    public float Seconds;
+    public CanvasGroup PanelToFade;
 
-    public int nscene;
-    public bool Ending;
-    public bool MainMenu;
-    public bool LoadingScene;
+    public string[] SceneNames;
 
-    void Start()
+    private static int scene;
+    float StartedLerping;
+    float SinceStart;
+    float PercentageComplete;
+    float CurrentValue;
+
+    private void Start()
     {
-        nscene = 0;
-        Ending = false;
-        MainMenu = true;
-        LoadingScene = false;
-    }
-        
-    IEnumerator FadeOut(int seconds)
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(seconds);
-
-            AnimationControler.SetTrigger("FadeOut");
-
-            AnimationControler.ResetTrigger("FadeOut");
-
-            AnimationControler.SetTrigger("NewScene");
-
-            AnimationControler.ResetTrigger("NewScene");
-
-            LoadNextScene();
-        }
+        FadeIn();
+        scene = 1;
     }
 
-    void IFadeComplete.OnFadeComplete()
+    public void FadeIn()
     {
-        StartCoroutine(FadeOut(Seconds));
+        StartCoroutine(Fade(PanelToFade, PanelToFade.alpha, 0, Seconds));
+
+        StopCoroutine("Fade");
+    }
+    public void FadeOut()
+    {
+        StartCoroutine(Fade(PanelToFade, PanelToFade.alpha, 1, Seconds));
+
+        StopCoroutine("Fade");
+    }
+    public void LoadNextScene( int SceneIndex)
+    {
+        FadeIn();
+
+        Load(SceneIndex);
     }
 
-    public void LoadNextScene()
+    IEnumerator Fade(CanvasGroup cg, float Start, float End, float LerpTime )
     {
-        if(MainMenu)
-        {
-            SceneManager.LoadScene(3);
-            MainMenu = false;
-            LoadingScene = true;
-            Ending = false;
-            Seconds = 11;
-        }
-        else if(Ending)
-        {
-            SceneManager.LoadScene(5);
-            Ending = false;
-            
-        }
-        else if(LoadingScene)
-        {
-            SceneManager.LoadScene(4);
-            LoadingScene = false;
-            Seconds = 1;
-            
-        }
-        else
-        {
-            SceneManager.LoadScene(nscene);
+        StartedLerping = Time.time;
+        SinceStart = Time.time - StartedLerping;
+        PercentageComplete = SinceStart / LerpTime;
 
-            nscene++;
+        while (true)
+        {
+            SinceStart = Time.time - StartedLerping;
+            PercentageComplete = SinceStart / LerpTime;
+            CurrentValue = Mathf.Lerp(Start, End, PercentageComplete);
 
-            if(nscene > 2)
-            {
-                Ending = true;
-                nscene = 0;
-            }
-            
+            PanelToFade.alpha = CurrentValue;
+
+            yield return new WaitForEndOfFrame();
         }
+
     }
-    public void SetMainMenu()
+
+    void Load( int SceneIndex)
     {
-        MainMenu = true;
-        LoadingScene = false;
-        Ending = false;
+        SceneManager.LoadScene(SceneNames[SceneIndex]);
     }
 }
