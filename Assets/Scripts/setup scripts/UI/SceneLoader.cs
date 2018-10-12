@@ -21,7 +21,7 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         FadeIn();
-        BuildIndex = 0;
+        BuildIndex = 4;
     }
 
     public void FadeIn()
@@ -33,13 +33,12 @@ public class SceneLoader : MonoBehaviour
     public void FadeOut()
     {
         StartCoroutine(Fade(PanelToFade, PanelToFade.alpha, 1, Seconds));
-
+        StartCoroutine(WaitForFade(Seconds,BuildIndex));
         StopCoroutine("Fade");
     }
     public void LoadNextScene()
     {
         FadeOut();
-        Load();
     }
 
     IEnumerator Fade(CanvasGroup cg, float Start, float End, float LerpTime)
@@ -48,7 +47,7 @@ public class SceneLoader : MonoBehaviour
         SinceStart = Time.time - StartedLerping;
         PercentageComplete = SinceStart / LerpTime;
 
-        while (Start != End)
+        while (true)
         {
             SinceStart = Time.time - StartedLerping;
             PercentageComplete = SinceStart / LerpTime;
@@ -58,6 +57,14 @@ public class SceneLoader : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+    }
+    IEnumerator WaitForFade (float seconds, int LevelToLoad)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        SceneManager.LoadScene(LevelToLoad);
+
+        FadeIn();
 
     }
 
@@ -102,8 +109,8 @@ public class SceneLoader : MonoBehaviour
               }
 
           }
-      }*/
-    void Load()
+      }
+  /*  void Load()
     {
        // LoadedScene = SceneManager.GetActiveScene();
 
