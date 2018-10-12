@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Starter : MonoBehaviour , IFadeComplete
+public class Starter : MonoBehaviour 
 {
     public int seconds;
     
@@ -17,11 +17,7 @@ public class Starter : MonoBehaviour , IFadeComplete
         {
             yield return new WaitForSeconds(seconds);
 
-            SceneManager.LoadScene("Loading Scene");
+           
         }
-    }
-    void IFadeComplete.OnFadeComplete()
-    {
-
     }
 }

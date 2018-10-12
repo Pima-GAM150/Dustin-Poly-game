@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBlock
 {
-
+    void Block();
 }
