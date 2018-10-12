@@ -5,12 +5,15 @@ public class ManagerS : MonoBehaviour
 {
     public static ManagerS Manager { get; private set; }
 
-
+    private GameObject mgr;
     private void Awake()
     {
         if(Manager == null)
         {
-            Manager = this;
+            mgr = GameObject.Find("Manager");
+
+            Manager = mgr.GetComponent<ManagerS>();
+
             DontDestroyOnLoad(gameObject);
         }
         else

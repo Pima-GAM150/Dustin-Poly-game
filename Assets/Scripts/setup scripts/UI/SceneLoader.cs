@@ -7,19 +7,21 @@ public class SceneLoader : MonoBehaviour
 {
     public float Seconds;
     public CanvasGroup PanelToFade;
+    public bool Loading;
+    public bool MainMenu;
+    public bool Ending;
 
-    public string[] SceneNames;
-
-    private static int scene;
+    int BuildIndex;
     float StartedLerping;
     float SinceStart;
     float PercentageComplete;
     float CurrentValue;
+    Scene LoadedScene;
 
     private void Start()
     {
         FadeIn();
-        scene = 1;
+        BuildIndex = 0;
     }
 
     public void FadeIn()
@@ -34,20 +36,19 @@ public class SceneLoader : MonoBehaviour
 
         StopCoroutine("Fade");
     }
-    public void LoadNextScene( int SceneIndex)
+    public void LoadNextScene()
     {
-        FadeIn();
-
-        Load(SceneIndex);
+        FadeOut();
+        Load();
     }
 
-    IEnumerator Fade(CanvasGroup cg, float Start, float End, float LerpTime )
+    IEnumerator Fade(CanvasGroup cg, float Start, float End, float LerpTime)
     {
         StartedLerping = Time.time;
         SinceStart = Time.time - StartedLerping;
         PercentageComplete = SinceStart / LerpTime;
 
-        while (true)
+        while (Start != End)
         {
             SinceStart = Time.time - StartedLerping;
             PercentageComplete = SinceStart / LerpTime;
@@ -60,8 +61,95 @@ public class SceneLoader : MonoBehaviour
 
     }
 
-    void Load( int SceneIndex)
+    /*  void Load()
+      {
+          LoadedScene = SceneManager.GetActiveScene();
+
+          if (string.Compare(LoadedScene.name, "Loading Scene") != 0 && Loading)
+          {
+              SceneManager.LoadSceneAsync(4);
+              FadeIn();
+              Loading = false;
+          }
+          else if(string.Compare(LoadedScene.name, "Main Menu Scene") != 0 && MainMenu)
+          {
+              SceneManager.LoadSceneAsync(3);
+              FadeIn();
+              MainMenu = false;
+          }
+          else if(string.Compare(LoadedScene.name, "Ending") != 0 && Ending)
+          {
+              SceneManager.LoadSceneAsync(5);
+              FadeIn();
+              Ending = false;
+          }
+          else
+          {
+              if(BuildIndex<3)
+              {
+                  SceneManager.LoadSceneAsync(BuildIndex);
+                  Loading = true;
+                  BuildIndex++;
+                  FadeIn();
+              }
+              else if(BuildIndex == 3)
+              {
+                  Ending = true;
+              }
+              else
+              {
+                  BuildIndex = 0;
+              }
+
+          }
+      }*/
+    void Load()
     {
-        SceneManager.LoadScene(SceneNames[SceneIndex]);
+       // LoadedScene = SceneManager.GetActiveScene();
+
+        if (MainMenu)
+        {
+            SceneManager.LoadScene(3);
+            FadeIn();
+            Loading = true;
+        }
+        else if (Loading)
+        {
+            SceneManager.LoadScene(4);
+            FadeIn();
+            Loading = false;
+        }
+        else if (Ending)
+        {
+            SceneManager.LoadScene(5);
+            FadeIn();
+        }
+        else
+        {
+            if(BuildIndex < 3)
+            {
+                SceneManager.LoadScene(BuildIndex);
+                FadeIn();
+                Loading = true;
+                BuildIndex++;
+            }
+            else if(BuildIndex == 3)
+            {
+                Ending = true;
+                BuildIndex = 0;
+            }
+            else
+            {
+
+            }
+        }
+
     }
+
+   /* void Load()
+    {
+        LoadedScene = SceneManager.GetActiveScene();
+
+
+    }*/
 }

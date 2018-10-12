@@ -16,9 +16,10 @@ public class Filler : MonoBehaviour
         LoadingBar.fillAmount = 0.0f;
         
         StartCoroutine(Loading(Seconds));
+
         StopCoroutine("Loading");
 
-        PanalToFade.LoadNextScene(2);
+        PanalToFade.LoadNextScene();
     }
 
     IEnumerator Loading(float seconds)
