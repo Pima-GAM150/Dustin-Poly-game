@@ -12,14 +12,14 @@ public class Filler : MonoBehaviour
 
     private void Start()
     {
-        PanalToFade.FadeIn();
+        //PanalToFade.FadeIn();
         LoadingBar.fillAmount = 0.0f;
         
         StartCoroutine(Loading(Seconds));
 
         StopCoroutine("Loading");
 
-        PanalToFade.LoadNextScene();
+       // PanalToFade.FadeOut();
     }
 
     IEnumerator Loading(float seconds)

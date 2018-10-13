@@ -3,24 +3,20 @@ using UnityEngine;
 
 public class ManagerS : MonoBehaviour
 {
-    public static ManagerS Manager { get; private set; }
-
-    private GameObject mgr;
+    public static ManagerS Manager = null;
 
     private void Awake()
     {
-        if(Manager == null)
+        if (Manager == null)
         {
-            mgr = GameObject.Find("Manager");
-
-            Manager = mgr.GetComponent<ManagerS>();
-
-            DontDestroyOnLoad(gameObject);
+            Manager = this;
         }
-        else
+        else if(Manager != this)
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
 }

@@ -4,12 +4,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
-{
+{/*
     public float Seconds;
     public CanvasGroup PanelToFade;
-    public bool Loading;
-    public bool MainMenu;
-    public bool Ending;
+    [HideInInspector] public bool MainMenu;
+    [HideInInspector] public bool Level1, Level2, Level3;
 
     int BuildIndex;
     float StartedLerping;
@@ -21,25 +20,19 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         FadeIn();
-        BuildIndex = 4;
     }
 
     public void FadeIn()
     {
         StartCoroutine(Fade(PanelToFade, PanelToFade.alpha, 0, Seconds));
-
-        StopCoroutine("Fade");
     }
     public void FadeOut()
     {
         StartCoroutine(Fade(PanelToFade, PanelToFade.alpha, 1, Seconds));
-        StartCoroutine(WaitForFade(Seconds,BuildIndex));
-        StopCoroutine("Fade");
+
+        LoadNextScene();
     }
-    public void LoadNextScene()
-    {
-        FadeOut();
-    }
+    
 
     IEnumerator Fade(CanvasGroup cg, float Start, float End, float LerpTime)
     {
@@ -62,13 +55,55 @@ public class SceneLoader : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-        SceneManager.LoadScene(LevelToLoad);
+        LoadNextScene();
 
         FadeIn();
 
     }
 
-    /*  void Load()
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(BuildIndex);
+        FadeIn();
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        LoadedScene = SceneManager.GetActiveScene();
+
+        if (LoadedScene.buildIndex != 4)
+        {
+            BuildIndex = 4;
+        }
+        else if (LoadedScene.buildIndex != 3 && MainMenu)
+        {
+            BuildIndex = 3;
+        }
+        else if (LoadedScene.buildIndex < 3)
+        {
+            if (Level1)
+            {
+                BuildIndex = 1;
+                if(Level2)
+                {
+                    BuildIndex = 2;
+                    if(Level3)
+                    {
+                        BuildIndex = 5;
+                    }
+                }
+            }
+            else
+            {
+                BuildIndex = 0;
+            }
+        }
+    }
+    /*   public void LoadNextScene()
+    {
+        FadeOut();
+    }
+    void Load()
       {
           LoadedScene = SceneManager.GetActiveScene();
 
@@ -159,4 +194,5 @@ public class SceneLoader : MonoBehaviour
 
 
     }*/
+
 }

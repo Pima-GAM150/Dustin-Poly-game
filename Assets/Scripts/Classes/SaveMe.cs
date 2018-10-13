@@ -11,7 +11,7 @@ public class SaveMe : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            SceneControler.LoadNextScene();
+           // SceneControler.FadeOut();
         }
     }
 }
