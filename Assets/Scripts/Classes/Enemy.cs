@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour
 {
-    void IDamageable.TakeDamage(int damage)
-    {
+    public int Health;
+    public int Damage;
 
-    }
 }

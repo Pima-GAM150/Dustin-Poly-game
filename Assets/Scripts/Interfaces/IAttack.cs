@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public interface IAttack
 {
-    void Attack();
+    void Attack(GameObject Opponent);
 }
