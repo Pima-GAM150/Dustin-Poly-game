@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 public interface IAttack
 {
-    void Attack(GameObject Opponent);
+    void Attack();
 }

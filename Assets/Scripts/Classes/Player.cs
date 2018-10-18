@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -22,6 +23,13 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetAxis("Horizontal") != 0)
         {
             transform.Rotate(Vector3.up, RotationSpeed * Input.GetAxis("Horizontal")*Time.deltaTime);
+        }
+
+        if (Health == 0)
+        {
+            Destroy(this);
+
+            SceneManager.LoadScene("Ending");
         }
     }
 

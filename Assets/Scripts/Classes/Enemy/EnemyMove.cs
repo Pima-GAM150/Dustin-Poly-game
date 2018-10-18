@@ -5,33 +5,34 @@ using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
-    private System.Random Rand;
-    private Vector3 newPos;
 
+    private Player Player;
     public NavMeshAgent Navigation;
 
     private void Start()
     {
-        
+        Player = FindObjectOfType<Player>();
+
+        StartCoroutine(FindPlayer());
     }
 
-    private void Update()
+    IEnumerator FindPlayer()
     {
-        if (Navigation.isActiveAndEnabled)
+        while(true)
         {
-            if (Navigation.isStopped)
-            {
-                newPos = new Vector3((float)Rand.NextDouble(), (float)Rand.NextDouble(), 1);
-                Navigation.SetDestination(newPos);
-            }
+            yield return new WaitForSeconds(3);
+
+            Navigation.SetDestination(Player.gameObject.transform.position);
+
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (!Navigation.isActiveAndEnabled)
         {
             Navigation.enabled = true;
+
+            Navigation.SetDestination(Player.gameObject.transform.position);
         }
     }
 }

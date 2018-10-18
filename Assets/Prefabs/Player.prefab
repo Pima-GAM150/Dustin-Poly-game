@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84cc012b62bdb743b87c749205750a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 100
   Damage: 5
   ForwardSpeed: 15
   RotationSpeed: 25

@@ -289,7 +289,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1677094799269870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6d4f6ce3fcc8041b25d38217440e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   Navigation: {fileID: 195251653747678714}
 --- !u!114 &114887782148321730
 MonoBehaviour:
@@ -362,8 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6796bb7a28a6b1408d642f909558c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
-  AnimationController: {fileID: 0}
+  TypeOfEnemy: {fileID: 114408687856043338}
+  Opponent: {fileID: 1895040887199492, guid: b4eaac6fee56bae4a9657a628fac7176, type: 2}
 --- !u!136 &136758806623139508
 CapsuleCollider:
   m_ObjectHideFlags: 1

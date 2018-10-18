@@ -335,8 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6796bb7a28a6b1408d642f909558c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  AnimationController: {fileID: 0}
+  TypeOfEnemy: {fileID: 114515371906595238}
+  Opponent: {fileID: 1895040887199492, guid: b4eaac6fee56bae4a9657a628fac7176, type: 2}
 --- !u!114 &114515371906595238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,7 +350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   Damage: 10
-  RotationSpeed: 0
 --- !u!114 &114954670640808388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6d4f6ce3fcc8041b25d38217440e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   Navigation: {fileID: 195093750748621188}
 --- !u!136 &136874507024852504
 CapsuleCollider:

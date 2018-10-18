@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour, IAttack
+public class EnemyAttack : MonoBehaviour
 {
-    public int Damage;
-    public Animator AnimationController;
+    public Enemy TypeOfEnemy;
 
-    Player enemy;
+    private IDamageable enemy;
 
-    private void Update()
+    private GameObject Opponent;
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AnimationController.SetTrigger("Attack");
-        }
+        Opponent =  collision.gameObject;
+
+        Attack();
     }
 
-    void IAttack.Attack(GameObject Opponent)
+    private void Attack()
     {
         enemy = Opponent.GetComponent<Player>();
-
-        enemy.Health -= Damage;
+        if (enemy != null)
+        {
+            enemy.TakeDamage(TypeOfEnemy.Damage);
+        }
     }
 }
