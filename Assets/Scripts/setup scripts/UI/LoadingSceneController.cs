@@ -34,6 +34,8 @@ public class LoadingSceneController : MonoBehaviour
             }
             yield return null;
         }
+
+        LoadingScreen.SetActive(false);
     }
 
 

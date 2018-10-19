@@ -14,6 +14,14 @@ public class FastEnemy : Enemy, IDamageable
         Navigation.speed *= SpeedMultiplyer;
     }
 
+    private void Update()
+    {
+        if(Health<=0)
+        {
+            Die();
+        }
+    }
+
     void IDamageable.TakeDamage(int damage)
     {
         Health -= damage;

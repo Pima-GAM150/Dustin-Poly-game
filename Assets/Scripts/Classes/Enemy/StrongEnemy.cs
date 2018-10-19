@@ -15,6 +15,13 @@ public class StrongEnemy : Enemy, IDamageable
         me = this.GetComponent<Enemy>();
         me.Damage *= DamageMultiplyer;
     }
+    private void Update()
+    {
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
     void IDamageable.TakeDamage(int damage)
     {
         Health -= damage-3;

@@ -10,13 +10,14 @@ public class ManagerS : MonoBehaviour
         if (Manager == null)
         {
             Manager = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if(Manager != this)
         {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        
     }
 
 }

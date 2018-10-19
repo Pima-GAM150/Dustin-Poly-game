@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IDamageable
             transform.Rotate(Vector3.up, RotationSpeed * Input.GetAxis("Horizontal")*Time.deltaTime);
         }
 
-        if (Health == 0)
+        if (Health <= 0)
         {
             Destroy(this);
 
