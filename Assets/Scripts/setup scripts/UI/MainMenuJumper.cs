@@ -4,8 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuJumper : MonoBehaviour {
 
+    LoadingSceneController Load;
+
     public void JumpToMainMenu()
     {
-        SceneManager.LoadScene("Main Menu Scene");
+        Load = FindObjectOfType<LoadingSceneController>();
+
+        Load.LoadNextScene(0);
     }
 }

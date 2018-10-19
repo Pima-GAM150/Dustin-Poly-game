@@ -4,20 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class Starter : MonoBehaviour 
 {
-    public int seconds;
+    public int Scene;
+    LoadingSceneController load;
     
     public void StartGame()
     {
-        StartCoroutine(Loading(seconds));
+       load = FindObjectOfType<LoadingSceneController>();
+
+        load.LoadNextScene(Scene);
     }
 
-    IEnumerator Loading(int seconds)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(seconds);
-
-           
-        }
-    }
+    
 }

@@ -8,6 +8,8 @@ public class Player : MonoBehaviour, IDamageable
     public int Health;
     public int Damage;
     public float ForwardSpeed,RotationSpeed;
+
+    LoadingSceneController Load;
     
     void Start()
     {
@@ -28,8 +30,8 @@ public class Player : MonoBehaviour, IDamageable
         if (Health <= 0)
         {
             Destroy(this);
-
-            SceneManager.LoadScene("Ending");
+            Load = FindObjectOfType<LoadingSceneController>();
+            Load.LoadNextScene(4);
         }
     }
 
